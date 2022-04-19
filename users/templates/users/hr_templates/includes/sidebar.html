@@ -1,0 +1,183 @@
+{% load i18n %}
+<nav id="sidebarMenu" class="sidebar d-md-block bg-dark text-white collapse" data-simplebar>
+    <div class="sidebar-inner px-4 pt-3">
+      <ul class="nav flex-column pt-3 pt-md-0">
+        <li class="nav-item">
+          <a href="{% url 'users:index' %}" class="nav-link d-flex align-items-center">
+
+              <span class="sidebar-icon"><span class="fas fa-home"></span></span>
+
+              <span class="mt-1 ms-1 sidebar-text">{% trans 'Dom' %}</span>
+          </a>
+        </li>
+          <li role="separator" class="dropdown-divider mt-4 mb-3 border-black"></li>
+
+          <li class="nav-item {% if 'transactions' in segment %} active {% endif %}">
+              <a href="{% url 'hr:holiday_table' %}" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-hand-holding-usd"></span></span>
+                  <span class="sidebar-text">{% trans 'Holidays' %}</span>
+              </a>
+          </li>
+          <li class="nav-item {% if 'settings' in segment %} active {% endif %}">
+              <a href="{% url 'hr:login_table' %}" class="nav-link">
+                  <span class="sidebar-icon"><span class="fas fa-cog"></span></span>
+                  <span class="sidebar-text">{% trans 'Login Log' %}</span>
+              </a>
+          </li>
+          <li class="nav-item {% if 'bootstrap-tables' in segment %} active {% endif %}">
+          <span
+                  class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                  data-bs-toggle="collapse" data-bs-target="#submenu-app">
+            <span>
+              <span class="sidebar-icon"><span class="fas fa-table"></span></span>
+              <span class="sidebar-text">{% trans 'All Users' %}</span>
+            </span>
+            <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
+          </span>
+              <div class="multi-level collapse "
+                   role="list" id="submenu-app" aria-expanded="false">
+                  <ul class="flex-column nav">
+                      <li class="nav-item ">
+                          <a class="nav-link" href="{% url 'hr:hr' %}">
+                              <span class="sidebar-text">{% trans 'Users' %}</span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+          <li class="nav-item">
+          <span
+                  class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+                  data-bs-toggle="collapse" data-bs-target="#submenu-pages">
+            <span>
+              <span class="sidebar-icon"><span class="far fa-file-alt"></span></span>
+              <span class="sidebar-text">{% trans 'Entry' %}</span>
+            </span>
+            <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
+          </span>
+              <div class="multi-level collapse " role="list"
+                   id="submenu-pages" aria-expanded="false">
+                  <ul class="flex-column nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'attendance:entry' %}">
+                              <span class="sidebar-text">{% trans 'Come in' %}</span>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'attendance:tables' %}">
+                              <span class="sidebar-text">{% trans 'Table' %}</span>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          {% now "m" as month %}
+                          {% now "Y" as year %}
+                          <a href="{% url 'attendance:month_report' user_id=user.id month_id=month year_id=year %}"
+                             class="nav-link">
+                              <span class="sidebar-text"> {% trans 'Raport za' %} {% now "F Y" %}</span>
+                          </a>
+                      </li>
+                  </ul>
+          </div>
+        </li>
+      {% comment %}
+        <li class="nav-item">
+          <span
+            class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+            data-bs-toggle="collapse" data-bs-target="#submenu-pages">
+            <span>
+              <span class="sidebar-icon"><span class="far fa-file-alt"></span></span>
+              <span class="sidebar-text">Page examples</span>
+            </span>
+            <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
+          </span>
+          <div class="multi-level collapse " role="list"
+            id="submenu-pages" aria-expanded="false">
+            <ul class="flex-column nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/sign-in.html">
+                  <span class="sidebar-text">Sign In</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sign-up.html">
+                  <span class="sidebar-text">Sign Up</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/forgot-password.html">
+                  <span class="sidebar-text">Forgot password</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/reset-password.html">
+                  <span class="sidebar-text">Reset password</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/lock.html">
+                  <span class="sidebar-text">Lock</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/page-404.html">
+                  <span class="sidebar-text">404 Not Found</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/page-500.html">
+                  <span class="sidebar-text">500 Not Found</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item {% if 'ui-' in segment %} active {% endif %}">
+          <span
+            class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+            data-bs-toggle="collapse" data-bs-target="#submenu-components">
+            <span>
+              <span class="sidebar-icon"><span class="fas fa-box-open"></span></span>
+              <span class="sidebar-text">Components</span>
+            </span>
+            <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
+          </span>
+          <div class="multi-level collapse " role="list"
+            id="submenu-components" aria-expanded="false">
+            <ul class="flex-column nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="/ui-buttons.html">
+                  <span class="sidebar-text">Buttons</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/ui-notifications.html">
+                  <span class="sidebar-text">Notifications</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/ui-forms.html">
+                  <span class="sidebar-text">Forms</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/ui-modals.html">
+                  <span class="sidebar-text">Modals</span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/ui-typography.html">
+                  <span class="sidebar-text">Typography</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      {% endcomment %}
+        <li role="separator" class="dropdown-divider mt-4 mb-3 border-black"></li>
+
+
+      </ul>
+    </div>
+  </nav>
+  

@@ -1,0 +1,52 @@
+{% extends 'users/base/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'HR' %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+
+
+
+        <table class="table table-hover table-bordered align-middle">
+    <thead>
+    <tr>
+        <th>{% trans 'ID' %}</th>
+        <th>{% trans 'Imie' %}</th>
+        <th>{% trans 'Nazwisko' %}</th>
+        <th>{% trans 'Typ' %}</th>
+        <th>{% trans 'Status' %}</th>
+        <th>{% trans 'Działanie' %}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for user in users %}
+    <tr>
+    <td>{{ user.id }}</td>
+    <td>{{ user.first_name }}</td>
+    <td> {{ user.last_name }}</td>
+        <td>{{ user.get_user_type_display }}</td>
+        <td>{{ user.get_status_display }}</td>
+    <td><a href="{% url 'hr:edit_user' usr_id=user.id %}">Edit</a>
+        {% if user.user_type == '1' and request.user.user_type == '2' %}
+            {% else %}
+               <form method="POST" action="{% url 'hr:delete_user' user_id=user.id %}">
+            {% csrf_token %}
+            <input type="submit" value="DEL">
+        </form>
+        {% endif %}
+
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+
+    <a class="button" href="{% url 'hr:add_user' %}">Add User</a>
+
+    </div>
+{% endblock %}

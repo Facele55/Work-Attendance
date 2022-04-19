@@ -1,0 +1,128 @@
+{% extends 'users/base/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Święta' %}
+{% endblock %}
+
+{% block content %}
+        <div class="justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+                      <form class="form-floating" action="." method="POST" role="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% comment %} Display Messages {% endcomment %}
+
+                    {% if messages %}
+                          <div class="form-group">
+                              <div class="col-12">
+                                  {% for message in messages %}
+                                      {% if message.tags == "error" %}
+                                          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% elif message.tags == "success" %}
+                                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                      {% endif %}
+
+{% if holiday %}
+    <ul>
+    {% if request.user.user_type == '3' %}
+    {% else %}
+                <a class="btn btn-success" role="button" href="{% url 'hr:add_holiday' %}">{% trans 'Dodaj Święto' %}</a>
+    {% endif %}
+
+{% regroup holiday by holi_date|date:"Y" as group_by_year %}
+    {% for year in group_by_year %}
+        <h1>{{ year.grouper }} {% trans 'Rok' %}</h1>
+
+         {% regroup year.list by holi_date|date:"m" as group_by_month %}
+                {% for month in group_by_month %}
+
+                    <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle">
+    <thead>
+    <tr>
+        <th style="width: 15%">{% trans 'Data' %}</th>
+        <th style="width: 15%">{% trans 'Dzień' %}</th>
+        <th style="width: 30%">{% trans 'until/since' %}</th>
+        <th style="width: 30%">{% trans 'Nazwa Święta' %}</th>
+        <th style="width: 10%">{% trans 'Działanie' %}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for h in month.list %}
+    <tr>
+        <td>{{ h.holi_date|date:"d E Y" }}</td>
+        <td>{{ h.holi_date|date:"l" }}</td>
+        <td>{{ h.holi_date|timeuntil }}</td>
+        <td>{{ h.name }}</td>
+        <td>
+                {% if request.user.user_type == '3' %}
+    {% else %}
+                    <a class="m-2" href="{% url 'hr:delete_holiday' holy_id=h.id %}">
+                <span style="color: red" class="fas fa-trash-alt me-2 m-1"></span></a>
+
+            <a class="m-2" href="{% url 'hr:edit_holiday' holy_id=h.id %}">
+            <span style="color: blue" class="fas fa-pen me-2"></span></a>
+    {% endif %}
+
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+            {% endfor %}
+        {%endfor%}
+</ul>
+
+
+{% elif form %}
+                        <div class="card-body">
+                            {% comment %} Adding Form with All inputs Here{% endcomment %}
+                            {% for field in form %}
+                                <div class="row mb-4">
+                                    <div class="col-lg-4 col-sm-6">
+                                       <span class="text-danger">{{ field.errors }}</span>
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+
+                                        {{ field }}
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                            <button type="submit" class="btn btn-outline-success">{% trans 'Dodaj' %}</button>
+                        </div>
+                </form>
+    {% else %}
+
+<div class="card text-center">
+    <div class="card-header">
+        <p>{% trans 'Przepraszamy, nie ma święt' %}</p>
+
+    </div>
+    <div class="card-body">
+            {% if request.user.user_type == '3' %}
+    {% else %}
+                <a class="btn btn-success" role="button" href="{% url 'hr:add_holiday' %}">{% trans 'Dodaj Święto' %}</a>
+    {% endif %}
+</div>
+</div>
+
+    </div>
+
+{% endif %}
+
+
+{% endblock %}

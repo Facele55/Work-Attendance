@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png"  href="{% static 'assets/img/buzG.ico' %}">
+
+    {% include 'users/base/jQuery.html' %}
+    {% include 'users/base/styles.html' %}
+
+<title>
+    {% block title %}{% endblock %}
+</title>
+
+</head>
+<body>
+
+  <main class="content">
+
+      {% if request.user.user_type == '3' %}
+        {% include 'users/worker_templates/includes/sidebar.html' %}
+        {% include 'users/worker_templates/includes/navigation.html' %}
+    {% elif request.user.user_type == '2' %}
+        {%  include 'users/hr_templates/includes/sidebar.html' %}
+        {%  include 'users/hr_templates/includes/navigation.html' %}
+{% else %}
+     {%  include 'users/admin_templates/includes/sidebar.html' %}
+        {%  include 'users/admin_templates/includes/navigation.html' %}
+{% endif %}
+
+    {% block content %}{% endblock content %}
+  </main>
+    {% comment %}
+        {% include 'users/hr_templates/includes/settings-box.html' %}
+
+      {% include 'users/hr_templates/includes/footer.html' %}
+{% endcomment %}
+
+
+  {% include 'users/base/scripts.html' %}
+
+{% block js %}{% endblock %}
+</body>
+</html>

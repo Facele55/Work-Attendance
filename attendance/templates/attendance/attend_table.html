@@ -1,0 +1,159 @@
+{% extends 'users/base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Tablica Obecności' %}
+{% endblock %}
+
+{% block content %}
+
+    <style>
+    li{
+          list-style-type: none;
+    }
+    </style>
+
+      {% now "Y" as y %}
+      {% now "m" as m %}
+    {% if messages %}
+                          <div class="form-group">
+                              <div class="col-12">
+                                  {% for message in messages %}
+                                      {% if message.tags == "error" %}
+                                          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% elif message.tags == "success" %}
+                                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                      {% endif %}
+
+    {% if not hours %}
+        <div class="h1">
+        {% trans 'No attendance' %}.
+
+        </div>
+
+    {% endif %}
+{% regroup hours by wh_date|date:"Y" as group_by_year %}
+    {% for year in group_by_year %}
+        <li><h1>{{ year.grouper }} {% trans 'Rok' %}</h1> </li>
+
+       {% regroup year.list by wh_date|date:"m" as group_by_month %}
+        {% for month in group_by_month %}
+        
+        {% if m == month.grouper and y == year.grouper %}
+
+      <h3>{% now "F Y" %}</h3>
+       <br>
+        {% trans 'Razem godzin' %}: {{ total }}
+        {%else%}
+            <ul>
+                {% regroup month.list by wh_date|date:"F" as month_name %}
+                {% for m_name in month_name %}
+                   <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample-{{ month.grouper }}-{{ year.grouper }}" aria-expanded="false" aria-controls="collapseExample-{{ month.grouper }}-{{ year.grouper }}">
+                            <i class="fas fa-plus"></i> 
+                        <b>{{ m_name.grouper }}</b> {{ year.grouper }}
+                   </button>
+                {% endfor %}
+
+            </ul>
+
+<div class="collapse" id="collapseExample-{{ month.grouper }}-{{ year.grouper }}">
+  <div class="card card-body">
+               <div class="left">
+    <a href="{% url 'attendance:month_report' user_id=user.id month_id=month.grouper year_id=year.grouper %}"
+        class="btn btn-outline-black link-purple" role="button">{% trans 'Generuj raport za' %} {{ month.grouper }}/{{ year.grouper }}</a>
+
+
+        {% endif %}
+            </div>
+            <div class="table-responsive">
+           <table  class="table table-hover">
+               <thead>
+               <th>{% trans 'Data' %}</th>
+               <th>{% trans 'Od' %}</th>
+               <th>{% trans 'Do' %}</th>
+               <th>{% trans 'Ilość godzin' %}</th>
+               <th>{% trans 'Miejsce' %}</th>
+               <th>{% trans 'Notatka' %}</th>
+               <th>{% trans 'Działanie' %}</th>
+               </thead>
+
+
+               <tbody>
+               {% for hour in month.list %}
+                   <tr>
+                       <td>{{ hour.wh_date }}</td>
+                       <td>{{ hour.wh_start }}</td>
+                       <td>{{ hour.wh_end }}</td>
+                       <td>{{ hour.wh_amount }}</td>
+                       <td>{{ hour.get_work_place_display }}
+                            {% if hour.work_place == 'holiday' %}
+                                {% for holiday in holidays %}
+                                    {% if hour.wh_date == holiday.holi_date %}
+                                        {{ holiday.name }}
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% endif %}
+                       </td>
+                       <td>{{ hour.note }}</td>
+                       <td><a class="m-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                           <span style="color: red" class="fas fa-trash-alt me-2"></span></a>
+
+                           <a class="m-2" href="{% url 'attendance:edit_record' record_id=hour.id %}">
+                           <span style="color: blue" class="fas fa-pen me-2"></span></a>
+
+                       </td>
+                   </tr>
+
+                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{% trans 'Potwierdzenie Usunięcia' %}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                          
+                          <form method="post" action="{% url 'attendance:delete_record' record_id=hour.id %}">
+                          {% csrf_token %}
+                          <p>{% trans 'Czy jesteś pewien, że chcesz usunąć' %} "{{ hour.wh_date }}"?</p>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans 'Nie' %}</button>
+                                <button type="submit" value="Confirm" class="btn btn-primary">{% trans 'Tak' %}</button>
+                          </div>
+                            </form>
+
+                          </div>
+                     
+                        </div>
+                      </div>
+                    </div>
+
+               {% endfor %}
+               </tbody>
+           </table>
+           </div>
+  </div>
+</div>
+
+        {% endfor %}
+    {% endfor %}
+
+
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}

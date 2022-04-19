@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png"  href="{% static 'assets/img/buzG.ico' %}">
+
+    {% include 'attendance/base/jQuery.html' %}
+    {% include 'attendance/base/styles.html' %}
+
+<title>
+    {% block title %}{% endblock %}
+</title>
+
+</head>
+<body>
+
+
+
+  {% include 'users/hr_templates/includes/sidebar.html' %}
+  <main class="content">
+    {% include 'users/hr_templates/includes/navigation.html' %}
+    {% block content %}{% endblock content %}
+  </main>
+    {% comment %}
+        {% include 'users/hr_templates/includes/settings-box.html' %}
+
+      {% include 'users/hr_templates/includes/footer.html' %}
+{% endcomment %}
+
+
+  {% include 'attendance/base/scripts.html' %}
+
+{% block js %}{% endblock %}
+</body>
+</html>

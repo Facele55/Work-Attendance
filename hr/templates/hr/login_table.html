@@ -1,0 +1,51 @@
+{% extends 'users/base/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Tabela Logowania' %}
+{% endblock %}
+
+{% block content %}
+                      {% if messages %}
+                          <div class="form-group">
+                              <div class="col-12">
+                                  {% for message in messages %}
+                                      {% if message.tags == "error" %}
+                                          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% elif message.tags == "success" %}
+                                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                      {% endif %}
+                      <div class="table-responsive">
+           <table  class="table table-hover">    
+               <thead>
+               <th>{% trans 'Użytkownik' %}</th>
+               <th>{% trans 'Zalogowano' %}</th>
+               <th>{% trans 'Wylogowano' %}</th>
+               </thead>
+
+
+               <tbody>
+               {% for hour in login_log %}
+                   <tr>
+                       <td>{{ hour.worker.first_name }} {{ hour.worker.last_name }}</td>
+                       <td>{% if hour.last_login %} {{ hour.last_login|date:"d E Y G:i:s" }} {% else %}  {% endif %}</td>
+                       <td>{% if hour.last_logout %} {{ hour.last_logout|date:"d E Y G:i:s" }} {% else %}  {% endif %}</td>
+                      
+                   </tr>
+               {% endfor %}
+               </tbody>
+
+
+           </table>
+         </div>
+
+{% endblock %}

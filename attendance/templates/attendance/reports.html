@@ -1,0 +1,112 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/png"  href="#">
+
+    <title>{% trans 'Raport' %} {{ worker.id }}</title>
+
+<style>
+@font-face {     
+    font-family: 'OpenSans';
+    src: url(https://github.com/googlefonts/opensans/blob/main/fonts/ttf/OpenSans-Bold.ttf?raw=True);
+} 
+* {
+    font-family: 'OpenSans', serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 12px;
+}
+.td_td {border: none}
+table, th, td {border: 1px solid black; border-collapse: collapse;}
+th, td {padding: 2.5px; text-align: center;}
+</style>
+</head>
+
+<body>
+<table>
+    <thead>
+    <tr>
+        <th style="width: 10%; background-color: lightgrey">{% trans 'Rok' %}</th>
+        <th style="width: 32%">{{ year }}</th>
+        <th style="background-color: lightgrey;width: 30%;" rowspan="2">{% trans 'Imię' %}, {% trans 'Nazwisko' %} </th>
+        <th style="width: 28%;" rowspan="2">{{ worker.first_name }} {{ worker.last_name }}</th>
+    </tr>
+    <tr>
+        <td style="background-color: lightgrey">{% trans 'Miesiąc' %}</td>
+        <td> {{ month|title }}</td>
+    </tr>
+    <tr>
+        <th style="background-color: lightgrey">{% trans 'Norma' %}</th>
+        <td>{{ norma }}</td>
+        <th style="background-color: lightgrey">{% trans 'Stanowisko' %}</th>
+        <td>{{ worker.work_position }} </td>
+    </tr>
+    </thead>
+</table>
+<table style="width: 100%">
+    <thead>
+    <tr>
+        <th style="width: 10%; background-color: lightgrey" rowspan="2">{% trans 'Dzień' %}</th>
+        <th style="background-color: lightgrey" colspan="2">{% trans 'Godziny pracy' %}</th>
+        <th style="width: 8%; background-color: lightgrey" rowspan="2">{% trans 'Ilość godzin' %}</th>
+        <th style="background-color: lightgrey; width: 30%;" rowspan="2">{% trans 'Notatka' %}</th>
+        <th style="width: 28%; background-color: lightgrey" rowspan="2">{% trans 'Podpis' %}</th>
+    </tr>
+    <tr>
+        <th style="width: 16%;">{% trans 'Od' %}</th>
+        <th style="width: 8%;">{% trans 'Do' %}</th>
+    </tr>
+    </thead>
+    {% for row in hours %}
+        <tbody>
+        <tr>
+            <td>{{ row.wh_date|date:"d" }}</td>
+
+            {% if row.work_place == 'day_off' %}
+                <td>{{ row.wh_date|date:"l"  }}</td>
+                
+            {% elif row.work_place == 'remote' %}
+                <td>{% if row.wh_start == '' %} {% else %} {{ row.wh_start }} {% endif %} </td>
+                <td>{% if row.wh_end == '' %} {% else %} {{ row.wh_end }} {% endif %} </td>
+                <td>{% if row.wh_amount == '' %} {% else %} {{ row.wh_amount|floatformat:"-1g"  }} {% endif %}</td>
+                <td>{{ row.get_work_place_display }} {% if row.note == '' %} {% else %} ({{ row.note }}){% endif %}</td>
+            
+            {% elif row.work_place == 'office' %}
+                <td>{{ row.wh_start }}</td>
+                <td>{{ row.wh_end }}</td>
+                <td>{{ row.wh_amount|floatformat:"-1g"  }}</td>
+                <td>{% if row.note == '' %} {% else %} {{ row.note }}{% endif %}</td>
+       
+             
+
+            {% elif row.work_place == 'holiday' %}
+                {% for holiday in holidays %}
+                    {% if row.wh_date == holiday.holi_date %}
+                        <td colspan="5">{{ row.get_work_place_display }} - {{ holiday.name }} </td>
+                    {% endif %}
+                {% endfor %}
+            {% elif row.work_place == 'vacation' %}
+                <td colspan="4">{{ row.get_work_place_display }}</td>
+            {% elif row.work_place == 'seak_leave' %}
+                <td colspan="4">{{ row.get_work_place_display }}</td>
+            {% else %}
+
+            {% endif %}
+        </tr>
+        </tbody>
+    {% endfor %}
+</table>
+<table class="td_td" style="width: 50%">
+    <th class="td_td" style="width: 10%"></th>
+    <th style="background-color: lightgrey; width: 24%">{% trans 'Razem' %}:</th>
+    <th style="width: 8%">{{ total }}</th>
+    <th class="td_td" colspan="6"></th>
+</table>
+
+</body>
+</html>

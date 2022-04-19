@@ -1,0 +1,553 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-19 11:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: attendance/forms.py:16 hr/forms.py:12
+msgid "Username"
+msgstr ""
+
+#: attendance/forms.py:23
+msgid "Password"
+msgstr ""
+
+#: attendance/forms.py:35
+msgid "Godzina pracy od"
+msgstr "Working hours start"
+
+#: attendance/forms.py:36
+msgid "Godzina pracy do"
+msgstr "Working hours until"
+
+#: attendance/forms.py:37 attendance/templates/attendance/attend_table.html:82
+#: hr/templates/hr/holidays.html:52
+msgid "Data"
+msgstr "Date"
+
+#: attendance/forms.py:38
+msgid "Miejsce pracy"
+msgstr "Work place"
+
+#: attendance/forms.py:39 attendance/templates/attendance/attend_table.html:87
+#: attendance/templates/attendance/reports.html:57
+msgid "Notatka"
+msgstr "Note"
+
+#: attendance/forms.py:82 hr/templates/hr/holidays.html:55
+msgid "Nazwa Święta"
+msgstr "Holiday Name"
+
+#: attendance/forms.py:83
+msgid "Data Święta"
+msgstr "Holiday Date"
+
+#: attendance/models.py:7
+msgid "ADMIN"
+msgstr "ADMIN"
+
+#: attendance/models.py:8
+msgid "Staff"
+msgstr ""
+
+#: attendance/models.py:9
+msgid "Worker"
+msgstr ""
+
+#: attendance/models.py:14
+msgid "Praca Zdalna"
+msgstr "Remote Work"
+
+#: attendance/models.py:15
+msgid "Biuro"
+msgstr "Office"
+
+#: attendance/models.py:16
+msgid "Weekend"
+msgstr ""
+
+#: attendance/models.py:17
+msgid "Urlop"
+msgstr "Vacation"
+
+#: attendance/models.py:18
+msgid "Święto"
+msgstr "Holiday"
+
+#: attendance/models.py:19
+msgid "Zwolnienie lekarskie"
+msgstr "Sick leave"
+
+#: attendance/models.py:24
+msgid "Currently Working"
+msgstr ""
+
+#: attendance/models.py:25
+msgid "Fired"
+msgstr ""
+
+#: attendance/templates/attendance/attend_table.html:6
+#: attendance/templates/attendance/header.html:18
+#: tasks/templates/tasks/all_tasks.html:5
+msgid "Tablica Obecności"
+msgstr "Attendance Table"
+
+#: attendance/templates/attendance/attend_table.html:41
+msgid "No attendance"
+msgstr ""
+
+#: attendance/templates/attendance/attend_table.html:48
+#: attendance/templates/attendance/reports.html:34
+#: hr/templates/hr/holidays.html:43
+msgid "Rok"
+msgstr "Year"
+
+#: attendance/templates/attendance/attend_table.html:57
+msgid "Razem godzin"
+msgstr "Total hours"
+
+#: attendance/templates/attendance/attend_table.html:74
+msgid "Generuj raport za"
+msgstr "Generate report for"
+
+#: attendance/templates/attendance/attend_table.html:83
+#: attendance/templates/attendance/reports.html:61
+msgid "Od"
+msgstr "From"
+
+#: attendance/templates/attendance/attend_table.html:84
+#: attendance/templates/attendance/reports.html:62
+msgid "Do"
+msgstr "Until"
+
+#: attendance/templates/attendance/attend_table.html:85
+#: attendance/templates/attendance/reports.html:56
+msgid "Ilość godzin"
+msgstr "Number of hours"
+
+#: attendance/templates/attendance/attend_table.html:86
+msgid "Miejsce"
+msgstr "Place"
+
+#: attendance/templates/attendance/attend_table.html:88
+#: hr/templates/hr/holidays.html:56 hr/templates/hr/hr.html:21
+msgid "Działanie"
+msgstr "Action"
+
+#: attendance/templates/attendance/attend_table.html:123
+msgid "Potwierdzenie Usunięcia"
+msgstr "Deletion Confirmation"
+
+#: attendance/templates/attendance/attend_table.html:130
+msgid "Czy jesteś pewien, że chcesz usunąć"
+msgstr "Are you sure you want to delete"
+
+#: attendance/templates/attendance/attend_table.html:132
+msgid "Nie"
+msgstr "No"
+
+#: attendance/templates/attendance/attend_table.html:133
+msgid "Tak"
+msgstr "Yes"
+
+#: attendance/templates/attendance/edit_record.html:4
+#: hr/templates/hr/edit_user.html:4 hr/templates/hr/edit_user_perm.html:4
+msgid "Edytuj Zapis"
+msgstr "Edit Record"
+
+#: attendance/templates/attendance/edit_record.html:51
+#: attendance/templates/attendance/submit_entry.html:49
+#: hr/templates/hr/create_user.html:51 hr/templates/hr/edit_holiday.html:51
+#: hr/templates/hr/edit_user.html:50 hr/templates/hr/edit_user_perm.html:52
+msgid "Zatwierdź"
+msgstr "Submit"
+
+#: attendance/templates/attendance/header.html:12
+#: users/templates/users/admin_templates/includes/sidebar.html:8
+#: users/templates/users/hr_templates/includes/sidebar.html:10
+#: users/templates/users/worker_templates/includes/sidebar.html:10
+msgid "Dom"
+msgstr "Home"
+
+#: attendance/templates/attendance/header.html:15
+#: attendance/templates/attendance/submit_entry.html:4
+msgid "Przyjść do pracy"
+msgstr "Come to work"
+
+#: attendance/templates/attendance/header.html:24
+#: users/templates/users/admin_templates/includes/sidebar.html:46
+#: users/templates/users/hr_templates/includes/sidebar.html:76
+#: users/templates/users/worker_templates/includes/sidebar.html:33
+msgid "Raport za"
+msgstr "Report for"
+
+#: attendance/templates/attendance/header.html:28
+msgid "Zadania"
+msgstr "Tasks"
+
+#: attendance/templates/attendance/header.html:44
+msgid "Wyloguj sie"
+msgstr "Log Out"
+
+#: attendance/templates/attendance/login.html:6
+#: attendance/templates/attendance/login.html:42
+#: attendance/templates/attendance/login.html:94
+msgid "Zaloguj sie"
+msgstr "Log In"
+
+#: attendance/templates/attendance/login.html:74
+#: hr/templates/hr/login_table.html:30
+msgid "Użytkownik"
+msgstr "User"
+
+#: attendance/templates/attendance/login.html:84
+msgid "Hasło"
+msgstr "Password"
+
+#: attendance/templates/attendance/reports.html:11
+msgid "Raport"
+msgstr "Report"
+
+#: attendance/templates/attendance/reports.html:36
+msgid "Imię"
+msgstr "Name"
+
+#: attendance/templates/attendance/reports.html:36 hr/templates/hr/hr.html:18
+msgid "Nazwisko"
+msgstr "Surname"
+
+#: attendance/templates/attendance/reports.html:40
+msgid "Miesiąc"
+msgstr "Month"
+
+#: attendance/templates/attendance/reports.html:44
+msgid "Norma"
+msgstr "The norm"
+
+#: attendance/templates/attendance/reports.html:46
+msgid "Stanowisko"
+msgstr "Position"
+
+#: attendance/templates/attendance/reports.html:54
+#: hr/templates/hr/holidays.html:53
+msgid "Dzień"
+msgstr "Day"
+
+#: attendance/templates/attendance/reports.html:55
+msgid "Godziny pracy"
+msgstr "Working hours"
+
+#: attendance/templates/attendance/reports.html:58
+msgid "Podpis"
+msgstr "Signature"
+
+#: attendance/templates/attendance/reports.html:106
+msgid "Razem"
+msgstr "Total"
+
+#: attendance/templates/attendance/send_mail.html:5
+msgid "Send Emails"
+msgstr ""
+
+#: attendance/templates/attendance/send_mail.html:57
+msgid "Send"
+msgstr ""
+
+#: attendance/views.py:43
+msgid "Podano nieprawidłowe dane"
+msgstr "Invalid data provided"
+
+#: attendance/views.py:46
+msgid "Błąd walidacji formularza"
+msgstr "Form validation error"
+
+#: attendance/views.py:76
+msgid "Witamy w prace!"
+msgstr "Welcome at work!"
+
+#: attendance/views.py:138 hr/views.py:104
+msgid "Usunieto"
+msgstr "Deleted"
+
+#: attendance/views.py:197 hr/views.py:34 hr/views.py:49 hr/views.py:79
+msgid "Aktualizowano!"
+msgstr "Updated!"
+
+#: attendance/views.py:216
+msgid "Monthly reports"
+msgstr ""
+
+#: hr/forms.py:13 users/templates/users/base/profile.html:19
+msgid "First Name"
+msgstr ""
+
+#: hr/forms.py:14
+msgid "Last Name"
+msgstr ""
+
+#: hr/forms.py:15
+msgid "Email address"
+msgstr ""
+
+#: hr/forms.py:16
+msgid "User Type"
+msgstr ""
+
+#: hr/forms.py:17 hr/templates/hr/hr.html:20
+msgid "Status"
+msgstr ""
+
+#: hr/forms.py:18
+msgid "Work Position"
+msgstr ""
+
+#: hr/templates/hr/create_user.html:4
+msgid "Create User"
+msgstr ""
+
+#: hr/templates/hr/edit_holiday.html:4
+msgid "Edytuj Święto"
+msgstr "Edit Holiday"
+
+#: hr/templates/hr/holidays.html:4
+msgid "Święta"
+msgstr "Holidays"
+
+#: hr/templates/hr/holidays.html:38 hr/templates/hr/holidays.html:118
+msgid "Dodaj Święto"
+msgstr "Add Holiday"
+
+#: hr/templates/hr/holidays.html:54
+msgid "until/since"
+msgstr ""
+
+#: hr/templates/hr/holidays.html:107
+msgid "Dodaj"
+msgstr "Add"
+
+#: hr/templates/hr/holidays.html:114
+msgid "Przepraszamy, nie ma święt"
+msgstr "Sorry, no holidays to display"
+
+#: hr/templates/hr/hr.html:4
+msgid "HR"
+msgstr ""
+
+#: hr/templates/hr/hr.html:16
+msgid "ID"
+msgstr ""
+
+#: hr/templates/hr/hr.html:17
+msgid "Imie"
+msgstr "Name"
+
+#: hr/templates/hr/hr.html:19
+msgid "Typ"
+msgstr "Type"
+
+#: hr/templates/hr/login_table.html:4
+msgid "Tabela Logowania"
+msgstr "Login Table"
+
+#: hr/templates/hr/login_table.html:31
+msgid "Zalogowano"
+msgstr "Logged In"
+
+#: hr/templates/hr/login_table.html:32
+msgid "Wylogowano"
+msgstr "Logged Out"
+
+#: hr/views.py:63
+msgid "Dodano!"
+msgstr "Added!"
+
+#: hr/views.py:107
+msgid "Nie Istnieje"
+msgstr "Does not exist"
+
+#: hr/views.py:111
+msgid "Błąd"
+msgstr "Error"
+
+#: hr/views.py:132
+msgid "Profile was created successfully!"
+msgstr ""
+
+#: tasks/models.py:6
+msgid "To Do"
+msgstr ""
+
+#: tasks/models.py:7
+msgid "In Progress"
+msgstr ""
+
+#: tasks/models.py:8
+msgid "Blocked"
+msgstr ""
+
+#: tasks/models.py:9
+msgid "Done"
+msgstr ""
+
+#: tasks/models.py:10
+msgid "Dismissed"
+msgstr ""
+
+#: tasks/models.py:13
+msgid "Low"
+msgstr ""
+
+#: tasks/models.py:14
+msgid "Normal"
+msgstr ""
+
+#: tasks/models.py:15
+msgid "High"
+msgstr ""
+
+#: tasks/models.py:16
+msgid "Critical"
+msgstr ""
+
+#: tasks/models.py:17
+msgid "Blocker"
+msgstr ""
+
+#: tasks/models.py:26
+msgid "state"
+msgstr ""
+
+#: tasks/models.py:27
+msgid "priority"
+msgstr ""
+
+#: users/templates/users/admin_templates/admin_home.html:5
+#: users/templates/users/admin_templates/admin_home.html:10
+msgid "Admin Home"
+msgstr ""
+
+#: users/templates/users/admin_templates/admin_home.html:12
+#: users/templates/users/hr_templates/hr_home.html:11
+#: users/templates/users/worker_templates/worker_home.html:11
+msgid "More staff coming soon"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/navigation.html:21
+#: users/templates/users/hr_templates/includes/navigation.html:21
+#: users/templates/users/worker_templates/includes/navigation.html:21
+msgid "Current User"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/navigation.html:28
+#: users/templates/users/hr_templates/includes/navigation.html:28
+#: users/templates/users/worker_templates/includes/navigation.html:28
+msgid "My Profile"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/navigation.html:32
+#: users/templates/users/hr_templates/includes/navigation.html:30
+#: users/templates/users/worker_templates/includes/navigation.html:31
+msgid "Change Password"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/navigation.html:35
+#: users/templates/users/hr_templates/includes/navigation.html:33
+#: users/templates/users/worker_templates/includes/navigation.html:34
+msgid "Logout"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:14
+msgid "Admin Dashboard"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:24
+#: users/templates/users/hr_templates/includes/sidebar.html:54
+msgid "Entry"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:33
+#: users/templates/users/hr_templates/includes/sidebar.html:63
+msgid "Come in"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:38
+#: users/templates/users/hr_templates/includes/sidebar.html:68
+msgid "Table"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:59
+#: users/templates/users/hr_templates/includes/sidebar.html:42
+msgid "Users"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:68
+#: users/templates/users/hr_templates/includes/sidebar.html:33
+msgid "All Users"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:73
+msgid "Add User"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:83
+#: users/templates/users/hr_templates/includes/sidebar.html:18
+msgid "Holidays"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:89
+#: users/templates/users/hr_templates/includes/sidebar.html:24
+msgid "Login Log"
+msgstr ""
+
+#: users/templates/users/admin_templates/includes/sidebar.html:95
+msgid "Send Email"
+msgstr ""
+
+#: users/templates/users/base/change-password.html:83
+msgid "Change password"
+msgstr ""
+
+#: users/templates/users/base/profile.html:5
+msgid "Edit "
+msgstr ""
+
+#: users/templates/users/base/profile.html:5
+#: users/templates/users/base/profile.html:91
+msgid "Profile"
+msgstr ""
+
+#: users/templates/users/base/profile.html:91
+msgid "Update"
+msgstr ""
+
+#: users/templates/users/hr_templates/hr_home.html:4
+#: users/templates/users/hr_templates/hr_home.html:9
+msgid "HR Home"
+msgstr ""
+
+#: users/templates/users/worker_templates/worker_home.html:4
+#: users/templates/users/worker_templates/worker_home.html:9
+msgid "Home"
+msgstr ""
+
+#: work/settings.py:124
+msgid "English"
+msgstr ""
+
+#: work/settings.py:125
+msgid "Polish"
+msgstr ""

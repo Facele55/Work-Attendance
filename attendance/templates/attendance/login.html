@@ -1,0 +1,142 @@
+{% extends "attendance/base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {% trans 'Zaloguj sie' %}
+{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+        <!-- Section -->
+        <section class="d-flex align-items-center ">
+            <div class="container">
+
+                <div class="row justify-content-center form-bg-image">
+                    <img style="width: 20%;" class="rounded img-fluid mx-auto d-block my-2" src="{% static 'assets/img/signin.svg' %}" alt="">
+
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h2 class="mb-0 h3">
+                                    {% trans 'Zaloguj sie' %}
+                                </h2>
+                                    {% if messages %}
+                                        <div class="form-group">
+                  <div class="col-12">
+                      {% for message in messages %}
+                          {% if message.tags == "error" %}
+                              <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                  {{ message }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                          {% elif message.tags == "success" %}
+                              <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                                  {{ message }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                          {% endif %}
+                      {% endfor %}
+                  </div>
+              </div>
+                                    {% endif %}
+
+                            </div>
+
+                            <form method="post" action="." class="mt-4">
+                                {% csrf_token %}
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="email">{% trans 'Użytkownik' %}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><span class="fas fa-user-circle"></span></span>
+                                        {{ form.username }}
+                                    </div>
+                                </div>
+                                <!-- End of Form -->
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <label for="password">{% trans 'Hasło' %}</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
+
+                                            {{ form.password }}
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" name="login" class="btn btn-dark">{% trans 'Zaloguj sie' %}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <script>
+        function myFunction() {
+            var x = document.getElementById("id_password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+const togglePassword = document
+            .querySelector('#togglePassword');
+
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', () => {
+
+            // Toggle the type attribute using
+            // getAttribure() method
+            const type = password
+                .getAttribute('type') === 'password' ?
+                'text' : 'password';
+
+            password.setAttribute('type', type);
+
+            // Toggle the eye and bi-eye icon
+            this.classList.toggle('bi-eye');
+        });
+
+
+$(document).ready(function(){
+ $("#toggle").change(function(){
+
+  // Check the checkbox state
+  if($(this).is(':checked')){
+   // Changing type attribute
+   $("#password").attr("type","text");
+
+   // Change the Text
+   $("#toggleText").text("Hide");
+  }else{
+   // Changing type attribute
+   $("#password").attr("type","password");
+
+   // Change the Text
+   $("#toggleText").text("Show");
+  }
+
+ });
+});
+</script>
+{% endblock javascripts %}

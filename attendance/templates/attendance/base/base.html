@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png"  href="{% static 'assets/img/signin.svg' %}">
+
+    {% include 'attendance/base/jQuery.html' %}
+    {% include 'attendance/base/styles.html' %}
+
+<title>
+    {% block title %}{% endblock %}
+</title>
+
+</head>
+<body>
+
+  <main>
+
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+
+  </main>
+
+  {% include 'attendance/base/scripts.html' %}
+
+{% block js %}{% endblock %}
+</body>
+</html>

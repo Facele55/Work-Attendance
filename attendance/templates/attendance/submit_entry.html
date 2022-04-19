@@ -1,0 +1,72 @@
+{% extends 'users/base/base.html' %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Przyjść do pracy' %}
+{% endblock %}
+
+{% block content %}
+                  <form class="form-floating" action="." method="POST" role="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% comment %} Display Messages {% endcomment %}
+
+                      {% if messages %}
+                          <div class="form-group">
+                              <div class="col-12">
+                                  {% for message in messages %}
+                                      {% if message.tags == "error" %}
+                                          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% elif message.tags == "success" %}
+                                          <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                              {{ message }}
+                                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                          </div>
+                                      {% endif %}
+                                  {% endfor %}
+                              </div>
+                          </div>
+                      {% endif %}
+
+                        <div class="card-body">
+                            {% comment %} Adding Form with All inputs Here{% endcomment %}
+                            {% for field in form %}
+                                <div class="row mb-4">
+                                    <div class="col-lg-4 col-sm-6">
+                                       <span class="text-danger">{{ field.errors }}</span>
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+
+                                        {{ field }}
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                            <button type="submit" class="btn btn-outline-success">{% trans 'Zatwierdź' %}</button>
+                        </div>
+                </form>
+    <script>
+        $(document).ready(function(){
+            $('input.timepicker').timepicker({
+                timeFormat: 'HH:mm',
+                use24hours: true,
+                interval: 30,
+                'minTime': '8:00',
+                'maxTime': '18:00',
+                showDuration: true,
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true,
+                ignoreReadonly: true
+                });
+        });
+    </script>
+    <!--
+{{ request.get_host }} 
+{{request }} <hr>
+    {{request.META }}  <hr>
+{{request.headers }} 
+--->
+{% endblock %}

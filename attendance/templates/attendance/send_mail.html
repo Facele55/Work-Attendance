@@ -1,0 +1,73 @@
+{% extends 'users/base/base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% trans 'Send Emails' %}
+{% endblock %}
+
+{% block content %}
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if messages %}
+            <div class="form-group ">
+                <div class="col-12">
+                    {% for message in messages %}
+                        {% if message.tags == "error" %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                        {% elif message.tags == "success" %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="card-body form-check">
+            {% comment %} Adding Form with All inputs Here{% endcomment %}
+
+            {% for field in form %}
+                <div class="row mb-4">
+                    <div class="col-lg-4 col-sm-6">
+                        <span class="text-danger">{{ field.errors }}</span>
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        {{ field }}
+                    </div>
+                </div>
+
+            {% endfor %}
+            <input type="checkbox" onclick="toggle(this);"/>Check all<br/>
+            <hr>
+            <button type="submit" class="btn btn-outline-success">{% trans 'Send' %}</button>
+        </div>
+    </form>
+
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] !== source)
+                    checkboxes[i].checked = source.checked;
+            }
+        }
+    </script>
+{% endblock %}

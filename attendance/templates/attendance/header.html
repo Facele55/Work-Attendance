@@ -1,0 +1,49 @@
+{% load i18n %}
+
+<style>
+  .dropdown:hover>.dropdown-menu{
+    display: block;
+  }
+</style>
+<nav class="py-2 bg-light border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+                <li class="nav-item">
+                  <a href="{% url 'users:index' %}" class="nav-link link-dark px-2">{% trans 'Dom' %}</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{% url 'attendance:entry' %}" class="nav-link link-dark px-2 active" aria-current="page">{% trans 'Przyjść do pracy' %}</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{% url 'attendance:tables' %}" class="nav-link link-dark px-2">{% trans 'Tablica Obecności' %}</a>
+              </li>
+                <li class="nav-item">
+                  {% now "m" as month %}
+                  {% now "Y" as year %}
+                  <a href="{% url 'attendance:month_report' user_id=user.id month_id=month year_id=year %}" class="nav-link link-dark px-2">
+                      {% trans 'Raport za' %} {% now "F Y" %}
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'tasks:all_tasks' %}" class="nav-link link-dark px-2">{% trans 'Zadania' %}</a>
+              </li>
+
+          {% comment %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">{% trans 'Różne' %}</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown03">
+              <li><a href="{% url 'attendance:login_table' %}" class="dropdown-item nav-link link-dark">{% trans 'Tabela Logowania' %}</a></li>
+              <li><a class="dropdown-item" href="{% url 'attendance:holiday_table' %}">{% trans 'Wszystkie Święta' %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'hr:hr' %}">HR</a></li>
+            </ul>
+          </li>
+{% endcomment %}
+      </ul>
+      <ul class="nav">
+          <li class="nav-item">
+              <a href="{% url 'attendance:logout' %}" class="nav-link link-dark px-2">{% trans 'Wyloguj sie' %}</a>
+          </li>
+
+      </ul>
+    </div>
+</nav>
