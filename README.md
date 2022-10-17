@@ -39,4 +39,4 @@ Can send emails with working hours reports for chosen month
 Add tasks - Admin or HR can add and assign task to certain worker
 
 #### Possible bugs
-After changing language some text may not change language
+After changing language some text may not be translated
